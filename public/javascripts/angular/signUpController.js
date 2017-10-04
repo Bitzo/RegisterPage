@@ -19,6 +19,23 @@ myApp.controller('signUpController', function($scope, $http) {
         if(!form || Object.keys(form).length <= 8) {
             return alert('请填写表单！');
         }
+
+        $http({
+            method: 'post',
+            url: "/api/signUp",
+            data: form
+        }).then(function success(response) {
+            if(response.data.isSuccess) {
+                alert(response.data.msg)
+            }else{
+                alert(response.data.msg)
+            }
+
+        }, function error(response) {
+            alert(response.data.msg)
+
+        });
+
         console.log(form)
 
     }
