@@ -2,6 +2,21 @@ doctype html
 html
   head
     title= title
+    link(rel="shortcut icon" href="/images/favicon.png")
+    link(rel='stylesheet', href='/bower_components/flat_ui/dist/css/vendor/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower_components/flat_ui/dist/css/flat-ui.min.css')
+    link(rel='stylesheet', href='/stylesheets/button.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+
+  body(ng-app='myApp', ng-controller='baseController')
     block content
+
+    script(src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js" opacity='0.9' color="28, 162, 200" count="160" )
+  script(src="/bower_components/flat_ui/dist/js/vendor/jquery.min.js")
+  script(src="/bower_components/flat_ui/dist/js/flat-ui.min.js")
+  script(src="/bower_components/angular/angular.min.js")
+
+  script(src="/javascripts/angular/baseconfig.js")
+  script(src="/javascripts/angular/baseController.js")
+  script(src="/javascripts/angular/signUpController.js")
+

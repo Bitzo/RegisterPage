@@ -6,7 +6,7 @@ This repo is designed for Taffeit orgnization.
 
 ## Web List
 
-[] A web for new members to sign up.
+- [ ] A web for new members to sign up.
 
 ## What's next ?
 
