@@ -4,7 +4,7 @@ var router = express.Router();
 let signUpService = require(APP_PATH+'/service/signUpService');
 
 /* GET home page. */
-router.get('/signUp', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('signUp', { title: 'Taffeit科技社 - 报名页面' });
 });
 
