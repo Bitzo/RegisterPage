@@ -1,6 +1,6 @@
 body {
   background-image: url("/images/bg.jpg");
-  background-size: auto;
+  background-size: contain;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   width: auto;
