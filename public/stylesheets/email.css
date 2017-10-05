@@ -1,0 +1,58 @@
+body {
+	width: 800px;
+	height: auto;
+	margin: 20px auto;
+}
+
+table {
+	width: 800px;
+	height: auto;
+	border: 2px solid #edecec;
+	padding: 0 20px;
+}
+
+tbody {
+    /*display: table-row-group;*/
+    /*vertical-align: middle;*/
+    /*border-color: inherit;*/
+}
+
+tr {
+    /*display: table-row;*/
+    /*vertical-align: inherit;*/
+    /*border-color: inherit;*/
+}
+
+.banner{
+	width: 800px;
+	height: 250px;
+}
+
+.main {
+	text-align: center;
+	margin: 0px auto;
+}
+
+span {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+h1{
+	color: #1755a5;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #1755a5;
+}
+
+.qun {
+	width: 200px
+}
+
+.q {
+	text-align: center;
+	margin: auto;
+}
