@@ -1,0 +1,4 @@
+序号	姓名	班级	email	状态	
+0	石玉龙	15软件工程（嵌入式培养）3班	bitzo@qq.com	true
+1	单凯	15软件工程（嵌入式）1班	944263714@qq.com	true
+2	孙茂昀	15软件工程（嵌入式）3班	njshiyulong@gmail.com	true

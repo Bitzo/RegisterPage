@@ -6,6 +6,8 @@
  * @Function:
  */
 
+const fs = require('fs');
+
 global.APP_PATH = __dirname;
 
 global.appRequire = function(path) {
@@ -20,3 +22,9 @@ global.errAlert = function (errMsg, location) {
     console.log('| ');
     console.log('===================================================================================');
 };
+
+global.mailloger = function (log) {
+    fs.appendFile(APP_PATH+'/emailStatus.txt', log, (err) => {
+        if(err) console.log('fsError',err);
+    })
+}

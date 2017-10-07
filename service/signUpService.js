@@ -50,3 +50,29 @@ exports.addSignUp = (data, callback) => {
         return callback(false, results);
     })
 };
+
+exports.querySignUp = function (data, callback) {
+    let queryData = {
+        'username': data.username || '',
+        'gender': data.gender || '',
+        'department': data.department || '',
+        'grade': data.grade || '',
+        'class': data.className || '',
+        'phoneNumber': data.phoneNumber || '',
+        'email': data.email || '',
+        'QQ': data.QQ || '',
+        'personInfo': data.personInfo || '',
+        'professionalInfo': data.professionalInfo || '',
+        'respect': data.respect || '',
+        'createTime': data.createTime || '',
+        'isActive': data.isActive || ''
+    };
+
+    signUpDAL.querySignUp(queryData, function (err, results) {
+        if (err) {
+            return callback(true, results);
+        }
+
+        return callback(false, results);
+    })
+};
