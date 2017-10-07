@@ -38,7 +38,8 @@ exports.addSignUp = (data, callback) => {
         'personInfo': data.personInfo || '',
         'professionalInfo': data.professionalInfo || '',
         'respect': data.respect || '',
-        'createTime': moment().format('YYYY-MM-DD HH:mm:ss')
+        'createTime': moment().format('YYYY-MM-DD HH:mm:ss'),
+        'isActive':1
     };
 
     signUpDAL.addUser(postData, function (err, results) {
