@@ -37,6 +37,9 @@ myApp.controller('signUpController', function($scope, $http) {
         });
 
         console.log(form)
-
+    }
+    
+    $scope.remove = function () {
+        $('.zixun')[0].style.display = 'none';
     }
 });

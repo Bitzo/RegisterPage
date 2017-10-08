@@ -1,80 +1,89 @@
 extends layout
 
 block content
-  div.panel.panel-default.signUpPanel
-    div.taffeitInfo
-      div.icon
-        img.logo.button-glow.button-border.button-rounded(src="/images/logo.jpg")
-      div.taffeitDesc
-        h1 Taffeit 科技社
-        p 金陵科技学院软件工程学院 Taffeit 科技社
+  div(ng-controller="signUpController")
+    div.zixun(style="position:fixed; top:5%; right:5%;z-index:100")
+      div.thumbnail
+        a(href="" ng-click="remove()")
+          i.glyphicon.glyphicon-remove
+        img(src="/images/zixunqun.png" style="width:200px;height:300px")
+        div.caption(style="text-align:center")
+          p 如有疑问可扫码加群咨询
+          a.btn.btn-primary(role="button" href="https://jq.qq.com/?_wv=1027&k=5prJjdI" target="_blank") 加群
+    div.panel.panel-default.signUpPanel
+      div.taffeitInfo
+        div.icon
+          img.logo.button-glow.button-border.button-rounded(src="/images/logo.jpg")
+        div.taffeitDesc
+          h1 Taffeit 科技社
+          p 金陵科技学院软件工程学院 Taffeit 科技社
 
-    div.progress
-      div.progress-bar.progress-bar-info(style="width: 0%;")
-    div.signUpForm(ng-controller="signUpController")
-      form(name="myForm")
-        div.form-group
-          label(for="username") 姓名 *
-          input.form-control(type="text" id="username" name="username" placeholder="姓名" ng-minlength="2" ng-maxlength="20" ng-model="form.username")
-          small.errorNotice(ng-if="myForm.username.$error.minlength && myForm.username.$touched") 姓名最少2位
-          small.errorNotice(ng-if="myForm.username.$error.maxlength && myForm.username.$touched") 姓名最多20位
+      div.progress
+        div.progress-bar.progress-bar-info(style="width: 0%;")
+      div.signUpForm()
+        form(name="myForm")
+          div.form-group
+            label(for="username") 姓名 *
+            input.form-control(type="text" id="username" name="username" placeholder="姓名" ng-minlength="2" ng-maxlength="20" ng-model="form.username")
+            small.errorNotice(ng-if="myForm.username.$error.minlength && myForm.username.$touched") 姓名最少2位
+            small.errorNotice(ng-if="myForm.username.$error.maxlength && myForm.username.$touched") 姓名最多20位
 
-        div.form-group
-          label(for="gender") 性别 *
-          select.form-control(id="gender" name="gender" )
-            option(value="1") 男
-            option(value="0") 女
-          small.errorNotice(ng-model="error.gender")
-        div.form-group
-          label(for="department") 学院 *
-          input.form-control(type="text" id="department" name="department" placeholder="学院(如：软件工程学院)" ng-model="form.department" ng-minlength="3" ng-maxlength="20" required)
-          small.errorNotice(ng-if="myForm.department.$error.minlength && myForm.department.$touched") 学院最少3位
-          small.errorNotice(ng-if="myForm.department.$error.maxlength && myForm.department.$touched") 学院最多20位
+          div.form-group
+            label(for="gender") 性别 *
+            select.form-control(id="gender" name="gender" )
+              option(value="1") 男
+              option(value="0") 女
+            small.errorNotice(ng-model="error.gender")
+          div.form-group
+            label(for="department") 学院 *
+            input.form-control(type="text" id="department" name="department" placeholder="学院(如：软件工程学院)" ng-model="form.department" ng-minlength="3" ng-maxlength="20" required)
+            small.errorNotice(ng-if="myForm.department.$error.minlength && myForm.department.$touched") 学院最少3位
+            small.errorNotice(ng-if="myForm.department.$error.maxlength && myForm.department.$touched") 学院最多20位
 
-        div.form-group
-          label(for="grade") 年级 *
-          select.form-control(id="grade" name="grade")
-            option(value="2017") 2017
-            option(value="2016") 2016
-            option(value="2015") 2015
-          small.errorNotice(ng-model="error.grade")
-        div.form-group
-          label(for="className") 班级 *
-          input.form-control(type="text" id="className" name="className" placeholder="班级（如：16软件工程（嵌入式培养）2班）" ng-model="form.className" ng-minlength="5" ng-maxlength="20" required)
-          small.errorNotice(ng-if="myForm.className.$error.minlength && myForm.className.$touched") 班级最少5位
-          small.errorNotice(ng-if="myForm.className.$error.maxlength && myForm.className.$touched") 班级最多20位
-        div.form-group
-          label(for="phoneNumber") 手机号 *
-          input.form-control(type="number" id="phoneNumber" name="phoneNumber" placeholder="手机号"  ng-model="form.phoneNumber" ng-minlength="11" ng-maxlength="11" required)
-          small.errorNotice(ng-if="(myForm.phoneNumber.$error.minlength || myForm.phoneNumber.$error.maxlength ) && myForm.phoneNumber.$touched") 请输入正确的手机号
-        div.form-group
-          label(for="QQ") QQ *
-          input.form-control(type="number" id="QQ" name="QQ" placeholder="QQ" ng-model="form.QQ" ng-minlength="5" ng-maxlength="13" required)
-          small.errorNotice(ng-if="myForm.QQ.$error.minlength && myForm.QQ.$touched") QQ最少5位
-          small.errorNotice(ng-if="myForm.QQ.$error.maxlength && myForm.QQ.$touched") QQ最多13位
-        div.form-group
-          label(for="email") 邮箱 *
-          input.form-control(type="email" id="email" name="email" placeholder="邮箱" ng-model="form.email" required)
-          small.errorNotice(ng-if="myForm.email.$error.required && myForm.email.$touched") 请填写邮箱
-          small.errorNotice(ng-if="myForm.email.$error.email && myForm.email.$touched") 请填写正确的邮箱
+          div.form-group
+            label(for="grade") 年级 *
+            select.form-control(id="grade" name="grade")
+              option(value="2017") 2017
+              option(value="2016") 2016
+              option(value="2015") 2015
+            small.errorNotice(ng-model="error.grade")
+          div.form-group
+            label(for="className") 班级 *
+            input.form-control(type="text" id="className" name="className" placeholder="班级（如：16软件工程（嵌入式培养）2班）" ng-model="form.className" ng-minlength="5" ng-maxlength="20" required)
+            small.errorNotice(ng-if="myForm.className.$error.minlength && myForm.className.$touched") 班级最少5位
+            small.errorNotice(ng-if="myForm.className.$error.maxlength && myForm.className.$touched") 班级最多20位
+          div.form-group
+            label(for="phoneNumber") 手机号 *
+            input.form-control(type="number" id="phoneNumber" name="phoneNumber" placeholder="手机号"  ng-model="form.phoneNumber" ng-minlength="11" ng-maxlength="11" required)
+            small.errorNotice(ng-if="(myForm.phoneNumber.$error.minlength || myForm.phoneNumber.$error.maxlength ) && myForm.phoneNumber.$touched") 请输入正确的手机号
+          div.form-group
+            label(for="QQ") QQ *
+            input.form-control(type="number" id="QQ" name="QQ" placeholder="QQ" ng-model="form.QQ" ng-minlength="5" ng-maxlength="13" required)
+            small.errorNotice(ng-if="myForm.QQ.$error.minlength && myForm.QQ.$touched") QQ最少5位
+            small.errorNotice(ng-if="myForm.QQ.$error.maxlength && myForm.QQ.$touched") QQ最多13位
+          div.form-group
+            label(for="email") 邮箱 *
+            input.form-control(type="email" id="email" name="email" placeholder="邮箱" ng-model="form.email" required)
+            small.errorNotice(ng-if="myForm.email.$error.required && myForm.email.$touched") 请填写邮箱
+            small.errorNotice(ng-if="myForm.email.$error.email && myForm.email.$touched") 请填写正确的邮箱
 
-        div.form-group
-          label(for="personInfo") 个人简介
-          textarea.form-control(placeholder="个人简介（可无）" id="personInfo" name="personInfo"  ng-model="form.personInfo" rows="4")
-          small.errorNotice(ng-if="myForm.personInfo.$error.maxlength && myForm.personInfo.$touched") 个人简介最多500字符
-        div.form-group
-          label(for="professionalInfo") 专业基础
-          textarea.form-control(placeholder="专业基础（请填写与软件相关的专业基础，若没有可填无）" id="professionalInfo" name="professionalInfo" ng-model="form.professionalInfo" rows="4")
-          small.errorNotice(ng-if="myForm.professionalInfo.$error.maxlength && myForm.professionalInfo.$touched") 专业基础最多200字符
-        div.form-group
-          label(for="respect") 对社团的期望
-          textarea.form-control(placeholder="对社团的期望（可无）" id="respect"  name="respect" ng-model="form.respect" rows="4")
-          small.errorNotice(ng-if="myForm.respect.$error.maxlength && myForm.respect.$touched") 期望最多500字符
-        div.form-group
-          a.btn.btn-large.btn-block.btn-primary(ng-click="submit(form)") 确认提交
-    br
-    br
-    div.contact
-      i.glyphicon.glyphicon-question-sign &nbsp;遇到问题无法提交表单？有其他问题？您也可以直接将您的信息或问题发送给我
-      a.button.button-glow.button-rounded.button-border.button-primary.buttonCus(href="mailto:bitzo@qq.com" target="_blank" title="E-Mail")
-        i.glyphicon.glyphicon-envelope
+          div.form-group
+            label(for="personInfo") 个人简介
+            textarea.form-control(placeholder="个人简介（可无）" id="personInfo" name="personInfo"  ng-model="form.personInfo" rows="4")
+            small.errorNotice(ng-if="myForm.personInfo.$error.maxlength && myForm.personInfo.$touched") 个人简介最多500字符
+          div.form-group
+            label(for="professionalInfo") 专业基础
+            textarea.form-control(placeholder="专业基础（请填写与软件相关的专业基础，若没有可填无）" id="professionalInfo" name="professionalInfo" ng-model="form.professionalInfo" rows="4")
+            small.errorNotice(ng-if="myForm.professionalInfo.$error.maxlength && myForm.professionalInfo.$touched") 专业基础最多200字符
+          div.form-group
+            label(for="respect") 对社团的期望
+            textarea.form-control(placeholder="对社团的期望（可无）" id="respect"  name="respect" ng-model="form.respect" rows="4")
+            small.errorNotice(ng-if="myForm.respect.$error.maxlength && myForm.respect.$touched") 期望最多500字符
+          div.form-group
+            a.btn.btn-large.btn-block.btn-primary(ng-click="submit(form)") 确认提交
+      br
+      br
+      div.contact
+        i.glyphicon.glyphicon-question-sign &nbsp;遇到问题无法提交表单？有其他问题？您也可以直接将您的信息或问题发送给我
+        a.button.button-glow.button-rounded.button-border.button-primary.buttonCus(href="mailto:bitzo@qq.com" target="_blank" title="E-Mail")
+          i.glyphicon.glyphicon-envelope
