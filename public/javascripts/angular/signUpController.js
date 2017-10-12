@@ -16,8 +16,27 @@ myApp.controller('signUpController', function($scope, $http) {
     $scope.submit = function(form) {
         console.log(form)
 
-        if(!form || Object.keys(form).length <= 8) {
+        if(!form || Object.keys(form).length <= 6) {
             return alert('请填写表单！');
+        }
+
+        if(form.phoneNumber == 0) {
+            return alert('请填写正确的手机号')
+        }
+
+        if(form.QQ  == 0) {
+            return alert('请填写正确的QQ号')
+        }
+
+        function isChinese(temp)
+        {
+            let re=/[^\u4e00-\u9fa5]/;
+            if(re.test(temp)) return false;
+            return true;
+        }
+
+        if(!isChinese(form.username)) {
+            return alert('请填写正确的中文姓名！');
         }
 
         $http({

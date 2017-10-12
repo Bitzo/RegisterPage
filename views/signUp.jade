@@ -30,10 +30,9 @@ block content
 
           div.form-group
             label(for="gender") 性别 *
-            select.form-control(id="gender" name="gender" )
+            select.form-control(id="gender" name="gender" ng-model="form.gender")
               option(value="1") 男
               option(value="0") 女
-            small.errorNotice(ng-model="error.gender")
           div.form-group
             label(for="department") 学院 *
             input.form-control(type="text" id="department" name="department" placeholder="学院(如：软件工程学院)" ng-model="form.department" ng-minlength="3" ng-maxlength="20" required)
@@ -42,11 +41,10 @@ block content
 
           div.form-group
             label(for="grade") 年级 *
-            select.form-control(id="grade" name="grade")
+            select.form-control(id="grade" name="grade" ng-model="form.grade")
               option(value="2017") 2017
               option(value="2016") 2016
               option(value="2015") 2015
-            small.errorNotice(ng-model="error.grade")
           div.form-group
             label(for="className") 班级 *
             input.form-control(type="text" id="className" name="className" placeholder="班级（如：16软件工程（嵌入式培养）2班）" ng-model="form.className" ng-minlength="5" ng-maxlength="20" required)
