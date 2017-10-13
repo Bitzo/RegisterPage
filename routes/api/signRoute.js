@@ -11,8 +11,20 @@ let signUpService = require(APP_PATH+'/service/signUpService');
 let moment = require('moment');
 let nodemailer = require('nodemailer');
 let fs = require('fs');
+let ifNeedBan = require(APP_PATH + '/tools/defendIP');
 
 router.post('/signUp', function(req, res, next) {
+    let ip = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
+
+
+    if(ifNeedBan(ip)){
+        console.log('alertIP: ',ip);
+        res.status(400);
+        return res.json({
+            msg: '当前IP提交次数过快，一分钟后再试！'
+        });
+    }
+
     console.log(req.body);
     let data = req.body;
 
@@ -58,6 +70,15 @@ router.post('/signUp', function(req, res, next) {
                     })
                 }
                 if (results && results.affectedRows > 0) {
+                    if(!IP[ip]){
+                        IP[ip] = [];
+                    }
+                    if(IP[ip].length === 5){
+                        IP[ip].push(moment().format('YYYY-MM-DD HH:mm:ss'));
+                        IP[ip].shift();
+                    }else{
+                        IP[ip].push(moment().format('YYYY-MM-DD HH:mm:ss'));
+                    }
                     res.status(200);
                     return res.json({
                         status: 200,
