@@ -14,7 +14,11 @@ let fs = require('fs');
 let ifNeedBan = require(APP_PATH + '/tools/defendIP');
 
 router.post('/signUp', function(req, res, next) {
-    let ip = req.ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
+    let ip = req.get("X-Real-IP") || req.get("X-Forwarded-For") || req.ip;
+
+	console.log(ip);
+
+    ip = ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
 
 
     if(ifNeedBan(ip)){
@@ -70,7 +74,8 @@ router.post('/signUp', function(req, res, next) {
                     })
                 }
                 if (results && results.affectedRows > 0) {
-                    if(!IP[ip]){
+        		console.log('IP: ',ip);
+	            if(!IP[ip]){
                         IP[ip] = [];
                     }
                     if(IP[ip].length === 5){
