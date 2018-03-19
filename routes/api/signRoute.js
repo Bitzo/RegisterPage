@@ -14,26 +14,11 @@ let fs = require('fs');
 let ifNeedBan = require(APP_PATH + '/tools/defendIP');
 
 router.post('/signUp', function(req, res, next) {
-    let ip = req.get("X-Real-IP") || req.get("X-Forwarded-For") || req.ip;
-
-	console.log(ip);
-
-    ip = ip.match(/\d+\.\d+\.\d+\.\d+/)[0];
-
-
-    if(ifNeedBan(ip)){
-        console.log('alertIP: ',ip);
-        res.status(400);
-        return res.json({
-            msg: '当前IP提交次数过快，一分钟后再试！'
-        });
-    }
-
     console.log(req.body);
+
     let data = req.body;
 
     signUpService.queryUsers({
-        'QQ': data.QQ,
         'email': data.email,
         'phoneNumber': data.phoneNumber
     }, (err, results) => {
@@ -61,7 +46,7 @@ router.post('/signUp', function(req, res, next) {
             return res.json({
                 status: 400,
                 isSuccess: false,
-                msg: "你已经提交过申请了。\n我们将在百团大战招新结束后一周内回复您\n届时请注意查收邮件或短信。\n请耐心等待回复 \n如有疑问，请邮件。"
+                msg: "你已报名, 本次报名将会覆盖原有材料",
             })
         }else {
             signUpService.addSignUp(data, (err, results) => {
@@ -74,23 +59,13 @@ router.post('/signUp', function(req, res, next) {
                     })
                 }
                 if (results && results.affectedRows > 0) {
-        		console.log('IP: ',ip);
-	            if(!IP[ip]){
-                        IP[ip] = [];
-                    }
-                    if(IP[ip].length === 5){
-                        IP[ip].push(moment().format('YYYY-MM-DD HH:mm:ss'));
-                        IP[ip].shift();
-                    }else{
-                        IP[ip].push(moment().format('YYYY-MM-DD HH:mm:ss'));
-                    }
+
                     res.status(200);
                     return res.json({
                         status: 200,
                         isSuccess: true,
-                        msg: "提交成功，我们将在百团大战招新结束后一周内回复您。\n届时请注意查收邮件或短信。"
+                        msg: "提交成功"
                     })
-
                 }else{
                     res.status(400);
                     return res.json({

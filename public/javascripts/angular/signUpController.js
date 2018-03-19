@@ -1,4 +1,3 @@
-
 /**
  * @Author: bitzo
  * @Date: 17-10-4 下午3:17
@@ -14,15 +13,24 @@ myApp.controller('signUpController', function($scope, $http) {
 
     $("#input-id").fileinput({
       language: 'zh',
-      showUpload: false,
+      // showUpload: false,
       previewFileType: 'any',
       maxFileCount: 1,
       maxFileSize: 20 * 1024,
-      uploadUrl: '/api/signUp',
+      uploadUrl: '/api/signUp/file',
       allowedFileExtensions: ['zip', '7z', 'rar'],
+      uploadExtraData: function (previewId, index) {
+          const data = $scope.form;
+          return data;
+      },
+    }).on('filepreupload', function(event, data, previewId, index) {
+        console.log(data);
+        console.log('File pre upload triggered');
+        $('#input-id').fileinput('cancel');
     });
 
     $scope.submit = function() {
+
       console.log($scope.form)
 
       if($scope.form.phoneNumber == 0) {
@@ -50,6 +58,7 @@ myApp.controller('signUpController', function($scope, $http) {
           data: $scope.form
       }).then(function success(response) {
           if(response.data.isSuccess) {
+              $('#input-id').fileinput('upload');
               alert(response.data.msg)
           }else{
               alert(response.data.msg)
@@ -57,7 +66,6 @@ myApp.controller('signUpController', function($scope, $http) {
 
       }, function error(response) {
           alert(response.data.msg)
-
       });
 
       console.log($scope.form)
