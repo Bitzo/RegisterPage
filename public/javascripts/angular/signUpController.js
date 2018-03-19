@@ -11,54 +11,55 @@ myApp.controller('signUpController', function($scope, $http) {
 
     $scope.form = {};
     $scope.form.grade = '2017';
-    $scope.form.gender = '1';
 
-    $scope.submit = function(form) {
-        console.log(form)
+    $("#input-id").fileinput({
+      language: 'zh',
+      showUpload: false,
+      previewFileType: 'any',
+      maxFileCount: 1,
+      maxFileSize: 20 * 1024,
+      uploadUrl: '/api/signUp',
+      allowedFileExtensions: ['zip', '7z', 'rar'],
+    });
 
-        if(!form || Object.keys(form).length <= 6) {
-            return alert('请填写表单！');
-        }
+    $scope.submit = function() {
+      console.log($scope.form)
 
-        if(form.phoneNumber == 0) {
-            return alert('请填写正确的手机号')
-        }
+      if($scope.form.phoneNumber == 0) {
+          return alert('请填写正确的手机号')
+      }
 
-        if(form.QQ  == 0) {
-            return alert('请填写正确的QQ号')
-        }
+      if($scope.form.QQ  == 0) {
+          return alert('请填写正确的QQ号')
+      }
 
-        function isChinese(temp)
-        {
-            let re=/[^\u4e00-\u9fa5]/;
-            if(re.test(temp)) return false;
-            return true;
-        }
+      function isChinese(temp)
+      {
+          let re=/[^\u4e00-\u9fa5]/;
+          if(re.test(temp)) return false;
+          return true;
+      }
 
-        if(!isChinese(form.username)) {
-            return alert('请填写正确的中文姓名！');
-        }
+      if(!isChinese($scope.form.username)) {
+          return alert('请填写正确的中文姓名！');
+      }
 
-        $http({
-            method: 'post',
-            url: "/api/signUp",
-            data: form
-        }).then(function success(response) {
-            if(response.data.isSuccess) {
-                alert(response.data.msg)
-            }else{
-                alert(response.data.msg)
-            }
+      $http({
+          method: 'post',
+          url: "/api/signUp",
+          data: $scope.form
+      }).then(function success(response) {
+          if(response.data.isSuccess) {
+              alert(response.data.msg)
+          }else{
+              alert(response.data.msg)
+          }
 
-        }, function error(response) {
-            alert(response.data.msg)
+      }, function error(response) {
+          alert(response.data.msg)
 
-        });
+      });
 
-        console.log(form)
-    }
-    
-    $scope.remove = function () {
-        $('.zixun')[0].style.display = 'none';
+      console.log($scope.form)
     }
 });
