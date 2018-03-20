@@ -11,7 +11,6 @@ let signUpService = require(APP_PATH+'/service/signUpService');
 let moment = require('moment');
 let nodemailer = require('nodemailer');
 let fs = require('fs');
-let ifNeedBan = require(APP_PATH + '/tools/defendIP');
 
 router.post('/signUp', function(req, res, next) {
     console.log(req.body);

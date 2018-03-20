@@ -27,6 +27,4 @@ global.mailloger = function (log) {
     fs.appendFile(APP_PATH+'/emailStatus.txt', log, (err) => {
         if(err) console.log('fsError',err);
     })
-};
-
-global.IP = {};
+}
